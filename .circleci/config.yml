@@ -1,0 +1,19 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/golang:1.10
+    working_directory: /go/src/github.com/apinnecke/go-exitcontext
+
+    steps:
+      - checkout
+      - run:
+          name: run tests
+          command: go test -v ./...
+
+      - run:
+          name: gometalinter
+          command: |
+            go get github.com/alecthomas/gometalinter
+            gometalinter -i
+            gometalinter --deadline=5m --vendor --skip=proto --sort=severity ./...
