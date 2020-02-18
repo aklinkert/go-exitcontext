@@ -21,7 +21,7 @@ func NewWithContext(ctx context.Context) context.Context {
 
 	go func() {
 		<-c
-		defer cancel()
+		cancel()
 	}()
 
 	return ctx
