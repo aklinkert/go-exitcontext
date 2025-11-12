@@ -20,6 +20,8 @@ exitCtx := exitcontext.New()
 
 ## License
 
-    MIT License
+```
+MIT License
 
-    Copyright (c) 2019 Alexander Pinnecke
+Copyright (c) 2019 - present Alex Klinkert
+```
