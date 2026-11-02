@@ -10,6 +10,8 @@ A Go package that returns a `context.Context` which is cancelled when the proces
 go get github.com/aklinkert/go-exitcontext
 ```
 
+Requires Go 1.21 or newer.
+
 ## Usage
 
 If you already have a context and want to recycle that one:
@@ -27,7 +29,9 @@ exitCtx := exitcontext.New()
 <-exitCtx.Done() // SIGINT or SIGTERM received
 ```
 
-The signal handler is released as soon as the context is done, whether a signal arrived or the parent context was cancelled.
+The signal handler is released as soon as the context is done, whether a signal arrived or the parent context was
+cancelled. A second `SIGINT` (Ctrl-C) or `SIGTERM` after that gets Go's default behaviour and terminates the process,
+same as with `signal.NotifyContext`.
 
 For new code, the standard library's [`signal.NotifyContext`](https://pkg.go.dev/os/signal#NotifyContext) offers the same with an explicit stop function.
 
